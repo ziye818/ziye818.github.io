@@ -25,12 +25,12 @@
 
   
 
-<link rel="canonical" href="http://example.com/2023/02/18/hello-world/">
+<link rel="canonical" href="http://example.com/2022/11/13/tomcat%E6%BA%90%E7%A0%81/">
 
 
 
   <title>
-Hello World |
+tomcat 之四大容器 |
 Arvin.yang Blog = Blog</title>
 <meta name="generator" content="Hexo 6.3.0"></head>
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -58,16 +58,16 @@ Arvin.yang Blog = Blog</title>
         <div id="brand">
           <div class="pjax">
           
-  <h1 itemprop="name headline">Hello World
+  <h1 itemprop="name headline">tomcat 之四大容器
   </h1>
   
 <div class="meta">
-  <span class="item" title="Created: 2023-02-18 01:43:43">
+  <span class="item" title="Created: 2022-11-13 21:23:52">
     <span class="icon">
       <i class="ic i-calendar"></i>
     </span>
     <span class="text">Posted on</span>
-    <time itemprop="dateCreated datePublished" datetime="2023-02-18T01:43:43+08:00">2023-02-18</time>
+    <time itemprop="dateCreated datePublished" datetime="2022-11-13T21:23:52+08:00">2022-11-13</time>
   </span>
 </div>
 
@@ -134,7 +134,7 @@ Arvin.yang Blog = Blog</title>
 </div>
 
     <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
-  <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/18/hello-world/">
+  <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/13/tomcat%E6%BA%90%E7%A0%81/">
 
   <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="image" content="/images/avatar.jpg">
@@ -149,25 +149,35 @@ Arvin.yang Blog = Blog</title>
   <div class="body md" itemprop="articleBody">
     
 
-    <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+    <h2 id="1-tomcat之四大容器"><a class="markdownIt-Anchor" href="#1-tomcat之四大容器">#</a> 1、tomcat 之四大容器</h2>
+<h3 id="11-engine"><a class="markdownIt-Anchor" href="#11-engine">#</a> 1.1、engine</h3>
+<h3 id="11-host"><a class="markdownIt-Anchor" href="#11-host">#</a> 1.1、host</h3>
+<p>虚拟主机，一个 tomcat 中可以定义多个 host。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Host</span> <span class="attr">name</span>=<span class="string">&quot;localhost&quot;</span>  <span class="attr">appBase</span>=<span class="string">&quot;webapps&quot;</span> <span class="attr">unpackWARs</span>=<span class="string">&quot;true&quot;</span> <span class="attr">autoDeploy</span>=<span class="string">&quot;true&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">Host</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">	name： 域名</span></span><br><span class="line"><span class="comment">	tomcat中部署应用的时候，默认可以直接丢在webapps中，如果是war包，tomcat会根据unpackWARs、autoDeploy自动解压部署。并且域名为默认的localhost，应用的文根是应用的文件夹名称。</span></span><br><span class="line"><span class="comment">	我们也可以自己单独部署比如：</span></span><br><span class="line"><span class="comment">	&lt;Context path=&quot;demoContext&quot; docBase=&quot;文件目录URL&quot;&gt;&lt;/Context&gt;</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="11-context"><a class="markdownIt-Anchor" href="#11-context">#</a> 1.1、context</h3>
+<p>一个 context 就代表着 tomcat 中部署的一个应用。</p>
+<h3 id="11-wrapper"><a class="markdownIt-Anchor" href="#11-wrapper">#</a> 1.1、wrapper</h3>
+<blockquote>
+<p>背景，一般情况下，我们都是继承 HttpServlet，一般都是单例 servlet，并发安全问题由程序员处理。</p>
+<p>但是有个例外，如果我们定义的 servlet 还继承了 SingleThreadModel 接口，这个接口已经标记为过期，并且该接口没有方法。这种情况是多例，一个请求一个实例。</p>
+<p>这样子单例、多例，混杂在一起，这样子会很混乱，所以才有了 wrapper。wrapper 就是为了给 servlet 分组，一种 servlet 对应一个 wrapper。</p>
+<p>这样子 context 里面存储的是 servlet 列表，其实是 wrapper 列表。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> Stack&lt;Servlet&gt; instancePool = <span class="literal">null</span>; <span class="comment">// STM</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">volatile</span> <span class="type">Servlet</span> <span class="variable">instance</span> <span class="operator">=</span> <span class="literal">null</span>;   <span class="comment">// single</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-类加载器"><a class="markdownIt-Anchor" href="#2-类加载器">#</a> 2、类加载器</h2>
 
   </div>
 
    <footer>
 
     <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">Edited on</span>
+    <time title="Modified: 2023-02-18 15:39:35" itemprop="dateModified" datetime="2023-02-18T15:39:35+08:00">2023-02-18</time>
+  </span>
 </div>
 
       
@@ -202,7 +212,7 @@ Arvin.yang Blog = Blog</title>
   </li>
   <li class="link">
     <strong>Post link: </strong>
-    <a href="http://example.com/2023/02/18/hello-world/" title="Hello World">http://example.com/2023/02/18/hello-world/</a>
+    <a href="http://example.com/2022/11/13/tomcat%E6%BA%90%E7%A0%81/" title="tomcat 之四大容器">http://example.com/2022/11/13/tomcat源码/</a>
   </li>
   <li class="license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
@@ -221,14 +231,22 @@ Arvin.yang Blog = Blog</title>
     <div class="item left">
       
 
-  <a href="/2022/11/16/tomcat%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/" itemprop="url" rel="prev" data-background-image="http:&#x2F;&#x2F;s3.bmp.ovh&#x2F;imgs&#x2F;2023&#x2F;01&#x2F;02&#x2F;ba52534db9c7c833.jpg" title="类加载器">
+  <a href="/2022/09/19/Future%E6%8E%A5%E5%8F%A3/" itemprop="url" rel="prev" data-background-image="http:&#x2F;&#x2F;s3.bmp.ovh&#x2F;imgs&#x2F;2023&#x2F;01&#x2F;02&#x2F;ba52534db9c7c833.jpg" title="异步任务接口">
   <span class="type">Previous Post</span>
   <span class="category"><i class="ic i-flag"></i> </span>
-  <h3>类加载器</h3>
+  <h3>异步任务接口</h3>
   </a>
 
     </div>
     <div class="item right">
+      
+
+  <a href="/2022/11/16/tomcat%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/" itemprop="url" rel="next" data-background-image="http:&#x2F;&#x2F;s3.bmp.ovh&#x2F;imgs&#x2F;2023&#x2F;01&#x2F;02&#x2F;ba52534db9c7c833.jpg" title="类加载器">
+  <span class="type">Next Post</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>类加载器</h3>
+  </a>
+
     </div>
 </div>
 
@@ -245,7 +263,7 @@ Arvin.yang Blog = Blog</title>
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="Contents">
-          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-tomcat%E4%B9%8B%E5%9B%9B%E5%A4%A7%E5%AE%B9%E5%99%A8"><span class="toc-number">1.</span> <span class="toc-text"> 1、tomcat 之四大容器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#11-engine"><span class="toc-number">1.1.</span> <span class="toc-text"> 1.1、engine</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-host"><span class="toc-number">1.2.</span> <span class="toc-text"> 1.1、host</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-context"><span class="toc-number">1.3.</span> <span class="toc-text"> 1.1、context</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-wrapper"><span class="toc-number">1.4.</span> <span class="toc-text"> 1.1、wrapper</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="toc-number">2.</span> <span class="toc-text"> 2、类加载器</span></a></li></ol>
       </div>
       <div class="related panel pjax" data-title="Related">
       </div>
@@ -321,10 +339,12 @@ Arvin.yang Blog = Blog</title>
 
   <ul id="quick">
     <li class="prev pjax">
+        <a href="/2022/09/19/Future%E6%8E%A5%E5%8F%A3/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
     </li>
     <li class="up"><i class="ic i-arrow-up"></i></li>
     <li class="down"><i class="ic i-arrow-down"></i></li>
     <li class="next pjax">
+        <a href="/2022/11/16/tomcat%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
     </li>
     <li class="percent"></li>
   </ul>
@@ -357,7 +377,7 @@ Arvin.yang Blog = Blog</title>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2023/02/18/hello-world/" title="Hello World">Hello World</a></span>
+    <span><a href="/2022/11/13/tomcat%E6%BA%90%E7%A0%81/" title="tomcat之四大容器">tomcat之四大容器</a></span>
   </li>
 
       
@@ -366,7 +386,7 @@ Arvin.yang Blog = Blog</title>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/11/13/tomcat%E6%BA%90%E7%A0%81/" title="tomcat之四大容器">tomcat之四大容器</a></span>
+    <span><a href="/2023/02/18/hello-world/" title="Hello World">Hello World</a></span>
   </li>
 
       
@@ -406,7 +426,7 @@ Arvin.yang Blog = Blog</title>
   </div>
 <script data-config type="text/javascript">
   var LOCAL = {
-    path: '2023/02/18/hello-world/',
+    path: '2022/11/13/tomcat源码/',
     favicon: {
       show: "（●´3｀●）Goooood",
       hide: "(´Д｀)Booooom"
