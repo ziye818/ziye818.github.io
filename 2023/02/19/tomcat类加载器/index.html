@@ -1,0 +1,408 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="" href="http://example.com/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="" href="http://example.com/atom.xml" />
+<link rel="alternate" type="application/json" title="" href="http://example.com/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+
+<link rel="canonical" href="http://example.com/2023/02/19/tomcat%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/">
+
+
+
+  <title>
+类加载器 |
+Arvin.Yang = </title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">类加载器
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2023-02-19 15:02:11">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2023-02-19T15:02:11+08:00">2023-02-19</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Arvin.Yang</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gicmnywqgpj20zk0m8dwx.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giciusoyjnj219g0u0x56.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giciuja1j1j20zk0m8kjl.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipeyonbf9j20zk0m8e81.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipevgoki5j20zk0m84qp.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipeyhsblkj20zk0m81kx.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/19/tomcat%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="Arvin.Yang">
+    <meta itemprop="description" content=", ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h1 id="1-类加载器"><a class="markdownIt-Anchor" href="#1-类加载器">#</a> 1、类加载器</h1>
+<h2 id="11-类加载器理论"><a class="markdownIt-Anchor" href="#11-类加载器理论">#</a> 1.1、类加载器理论</h2>
+<h3 id="111-类加载器分类"><a class="markdownIt-Anchor" href="#111-类加载器分类">#</a> 1.1.1、类加载器分类：</h3>
+<ul>
+<li>
+<p>引导类加载器 (bootstrap class loader)：用于加载 Java 的核心库，JDK 自带， C++ 代码实现的；</p>
+</li>
+<li>
+<p>扩展类加载器 (extensions class loader)：用于加载 Java 扩展库，JDK 自带；jre/ext</p>
+</li>
+<li>
+<p>系统类加载器 (system class loader)：用于加载 classpath 路径下的类，也就是我们编写的应用程序；</p>
+</li>
+<li>
+<p>自定义类加载器 (custom class loader)：用于加载自定义的类，这个是重点；</p>
+</li>
+</ul>
+<h3 id="112-双亲委派机制"><a class="markdownIt-Anchor" href="#112-双亲委派机制">#</a> 1.1.2、双亲委派机制</h3>
+<p>​        不管是自定义的类加载器还是系统类加载，甚至其他类加载器，当加载某个 class 的时候，他们自己都很懒，首先甩锅，把这个加载类的活交给父亲取处理，当父亲接到这个活后，他也偷懒并甩锅给他的父亲，这样子层层往上甩锅，一直甩给老祖，老祖（引导类加载器）接到这个活后，没有甩锅的地方，那么只能自己干呗，然后他在自己作用范围内加载该类，如果有则 OK，此事接这么结束了，但是如果找不到该类，那没有办法，只能打回去交给甩锅给他的孩子扩展类加载器，扩展类加载器发现父亲不给处理，又打回来了，那么只能自己干呗，然后就在他的作用范围内加载该类，同样又则 OK，不过没有则继续王回抛。</p>
+<p>​        Java 虚拟机为什么要这么设计类，具体原因是为了安全，如果没有此机制，那么有个开发或者黑客写个与 jdk 中同样的类比如 String，他在里面加点料，然后通过自定义的加载器加载，然后很容易出现误导，导致出现问题。所以有了双亲委派机制，你写的同样的类，不会被加载。</p>
+<h2 id="12-类加载器使用"><a class="markdownIt-Anchor" href="#12-类加载器使用">#</a> 1.2、类加载器使用</h2>
+<h3 id="121-自定义类加载器的使用场景"><a class="markdownIt-Anchor" href="#121-自定义类加载器的使用场景">#</a> 1.2.1、自定义类加载器的使用场景</h3>
+<ul>
+<li>依赖冲突</li>
+<li>热加载</li>
+<li>热部署</li>
+<li>加密保护</li>
+</ul>
+<h3 id="122-自定义类加载器"><a class="markdownIt-Anchor" href="#122-自定义类加载器">#</a> 1.2.2、自定义类加载器</h3>
+<ul>
+<li>继承 ClassLoader 抽象类</li>
+<li>重写 findClass () 方法</li>
+<li>在重写的 findClass 方法中调用 defineClass () 方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.arvin.springbootdemo.loader;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationTargetException;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> yangjian</span></span><br><span class="line"><span class="comment"> * 第一步：继承ClassLoader抽象类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyClassLoader</span> <span class="keyword">extends</span> <span class="title class_">ClassLoader</span> &#123;</span><br><span class="line">  </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 被加载类的路径地址，此路径不包含包名路径</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String classpath;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MyClassLoader</span><span class="params">(String classpath)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.classpath = classpath;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">     <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 第一步：重写findClass()方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt; findClass(String name) <span class="keyword">throws</span> ClassNotFoundException &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">byte</span>[] bytes = loadByte(name);</span><br><span class="line">          	<span class="comment">// 第三步：调用defineClass()方法</span></span><br><span class="line">            <span class="keyword">return</span> defineClass(name, bytes, <span class="number">0</span>, bytes.length);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">ClassNotFoundException</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="type">byte</span>[] loadByte(String className) <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">abstractClassName</span> <span class="operator">=</span> classpath + File.separator + className.replace(<span class="string">&quot;.&quot;</span>, File.separator).concat(<span class="string">&quot;.class&quot;</span>);</span><br><span class="line">        <span class="type">FileInputStream</span> <span class="variable">fileInputStream</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(abstractClassName);</span><br><span class="line">        <span class="type">byte</span>[] bytes = <span class="keyword">new</span> <span class="title class_">byte</span>[fileInputStream.available()];</span><br><span class="line">        fileInputStream.read(bytes);</span><br><span class="line">        fileInputStream.close();</span><br><span class="line">        <span class="keyword">return</span> bytes;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 验证</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException, IllegalAccessException, InstantiationException &#123;</span><br><span class="line">        <span class="type">MyClassLoader</span> <span class="variable">myClassLoader</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MyClassLoader</span>(<span class="string">&quot;C:\\Users\\yangjian\\Desktop&quot;</span>);</span><br><span class="line">        <span class="keyword">final</span> Class&lt;?&gt; classLoaderDemo = myClassLoader.loadClass(<span class="string">&quot;com.arvin.springbootdemo.test.ClassLoaderDemo&quot;</span>); <span class="comment">// 使用类的全路径即包名+ 类名</span></span><br><span class="line">        System.out.println(classLoaderDemo.getClassLoader());</span><br><span class="line">        System.out.println(classLoaderDemo.getClassLoader().getParent());</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            classLoaderDemo.getDeclaredMethod(<span class="string">&quot;out&quot;</span>).invoke(classLoaderDemo);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InvocationTargetException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (NoSuchMethodException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="13-热更新实践"><a class="markdownIt-Anchor" href="#13-热更新实践">#</a> 1.3、热更新实践</h2>
+<blockquote>
+<p>在统一搜索服务中，可以添加搜索的意图业务，该业务是临时多变的，所以可以采用热加载处理，将开发好的意图类文件，通过管理后台上传的服务器，服务器应用有个线程检测到到该文件后，就进行加载处理，进行启用该功能。</p>
+</blockquote>
+<h2 id="14-tomcat中类加载器"><a class="markdownIt-Anchor" href="#14-tomcat中类加载器">#</a> 1.4、Tomcat 中类加载器</h2>
+
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2023-02-18 15:39:55" itemprop="dateModified" datetime="2023-02-18T15:39:55+08:00">2023-02-18</time>
+  </span>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>Arvin.Yang <i class="ic i-at"><em>@</em></i>
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2023/02/19/tomcat%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/" title="类加载器">http://example.com/2023/02/19/tomcat类加载器/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2023/02/19/Future%E6%8E%A5%E5%8F%A3/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giph4lm9i7j20zk0m84qp.jpg" title="异步任务接口">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>异步任务接口</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2023/02/19/GC%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicit31ffoj20zk0m8naf.jpg" title="GC配置详解">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>GC配置详解</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="toc-number">1.</span> <span class="toc-text"> 1、类加载器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E7%90%86%E8%AE%BA"><span class="toc-number">1.1.</span> <span class="toc-text"> 1.1、类加载器理论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#111-%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E5%88%86%E7%B1%BB"><span class="toc-number">1.1.1.</span> <span class="toc-text"> 1.1.1、类加载器分类：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#112-%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6"><span class="toc-number">1.1.2.</span> <span class="toc-text"> 1.1.2、双亲委派机制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E4%BD%BF%E7%94%A8"><span class="toc-number">1.2.</span> <span class="toc-text"> 1.2、类加载器使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#121-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 1.2.1、自定义类加载器的使用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#122-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 1.2.2、自定义类加载器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-%E7%83%AD%E6%9B%B4%E6%96%B0%E5%AE%9E%E8%B7%B5"><span class="toc-number">1.3.</span> <span class="toc-text"> 1.3、热更新实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-tomcat%E4%B8%AD%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="toc-number">1.4.</span> <span class="toc-text"> 1.4、Tomcat 中类加载器</span></a></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="Arvin.Yang"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">Arvin.Yang</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">5</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2023/02/19/Future%E6%8E%A5%E5%8F%A3/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2023/02/19/GC%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Arvin.Yang @ Arvin.Yang</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2023/02/19/tomcat类加载器/',
+    favicon: {
+      show: "（●´3｀●）やれやれだぜ",
+      hide: "(´Д｀)大変だ！"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>
