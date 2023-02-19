@@ -100,12 +100,12 @@ Arvin.Yang = </title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giclfw2t96j20zk0m8x6p.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giclhfehz7j20zk0m8u0x.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipeyvx1d4j20zk0m8hdt.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giclfdu6exj20zk0m87hw.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giciub8ja1j20zk0m81ky.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giciryrr3rj20zk0m8nhk.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giciuv0socj20zk0m8qes.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicitzannuj20zk0m8b29.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipey0a334j20zk0m8qpt.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclg5ms2rj20zk0m8u0x.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicivghyooj20zk0m8dir.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclh5u05ej20zk0m87df.jpg"></li>
         </ul>
       </div>
     </header>
@@ -138,7 +138,7 @@ Arvin.Yang = </title>
 
   <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="image" content="/images/avatar.jpg">
-    <meta itemprop="name" content="Arvin.Yang">
+    <meta itemprop="name" content="Arvin Yang">
     <meta itemprop="description" content=", ">
   </span>
 
@@ -155,43 +155,86 @@ Arvin.Yang = </title>
 <h3 id="一-gc日志打印设置"><a class="markdownIt-Anchor" href="#一-gc日志打印设置">#</a> 一、GC 日志打印设置</h3>
 <h4 id="1-打印基本gc信息"><a class="markdownIt-Anchor" href="#1-打印基本gc信息">#</a> 1、打印基本 GC 信息</h4>
 <p>打印 GC 日志的第一步，就是开启 GC 打印的参数了，也是最基本的参数</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">-XX</span>:<span class="string">+PrintGCDetails -XX:+PrintGCDateStamps</span></span><br></pre></td></tr></table></figure>
-<h4 id="2-打印对象分布"><a class="markdownIt-Anchor" href="#2-打印对象分布">#</a> 2、打印对象分布</h4>
+<figure class="highlight properties"><figcaption data-lang=".properties"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token key attr-name">-XX</span><span class="token punctuation">:</span><span class="token value attr-value">+PrintGCDetails -XX:+PrintGCDateStamps</span></pre></td></tr></table></figure><h4 id="2-打印对象分布"><a class="markdownIt-Anchor" href="#2-打印对象分布">#</a> 2、打印对象分布</h4>
 <p>为了分析 GC 时的晋升情况和晋升导致的高暂停，不看对象年龄分布日志怎么行？</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-XX:+PrintTenuringDistribution</span><br></pre></td></tr></table></figure>
+<pre><code>-XX:+PrintTenuringDistribution
+</code></pre>
 <p>输出内容示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Desired survivor size 59244544 bytes, new threshold 15 (max 15)</span><br><span class="line">- age   1:     963176 bytes,     963176 total</span><br><span class="line">- age   2:     791264 bytes,    1754440 total</span><br><span class="line">- age   3:     210960 bytes,    1965400 total</span><br><span class="line">- age   4:     167672 bytes,    2133072 total</span><br><span class="line">- age   5:     172496 bytes,    2305568 total</span><br><span class="line">- age   6:     107960 bytes,    2413528 total</span><br><span class="line">- age   7:     205440 bytes,    2618968 total</span><br><span class="line">- age   8:     185144 bytes,    2804112 total</span><br><span class="line">- age   9:     195240 bytes,    2999352 total</span><br><span class="line">- age  10:     169080 bytes,    3168432 total</span><br><span class="line">- age  11:     114664 bytes,    3283096 total</span><br><span class="line">- age  12:     168880 bytes,    3451976 total</span><br><span class="line">- age  13:     167272 bytes,    3619248 total</span><br><span class="line">- age  14:     387808 bytes,    4007056 total</span><br><span class="line">- age  15:     168992 bytes,    4176048 total</span><br></pre></td></tr></table></figure>
+<pre><code>Desired survivor size 59244544 bytes, new threshold 15 (max 15)
+- age   1:     963176 bytes,     963176 total
+- age   2:     791264 bytes,    1754440 total
+- age   3:     210960 bytes,    1965400 total
+- age   4:     167672 bytes,    2133072 total
+- age   5:     172496 bytes,    2305568 total
+- age   6:     107960 bytes,    2413528 total
+- age   7:     205440 bytes,    2618968 total
+- age   8:     185144 bytes,    2804112 total
+- age   9:     195240 bytes,    2999352 total
+- age  10:     169080 bytes,    3168432 total
+- age  11:     114664 bytes,    3283096 total
+- age  12:     168880 bytes,    3451976 total
+- age  13:     167272 bytes,    3619248 total
+- age  14:     387808 bytes,    4007056 total
+- age  15:     168992 bytes,    4176048 total
+</code></pre>
 <h4 id="3-gc后打印堆数据"><a class="markdownIt-Anchor" href="#3-gc后打印堆数据">#</a> 3、GC 后打印堆数据</h4>
 <p>每次发生 GC 时，对比一下 GC 前后的堆内存情况，更直观</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-XX:+PrintHeapAtGC</span><br></pre></td></tr></table></figure>
+<pre><code>-XX:+PrintHeapAtGC
+</code></pre>
 <p>输出内容示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;Heap before GC invocations=0 (full 0):</span><br><span class="line"> garbage-first heap   total 1024000K, used 324609K [0x0000000781800000, 0x0000000781901f40, 0x00000007c0000000)</span><br><span class="line">  region size 1024K, 6 young (6144K), 0 survivors (0K)</span><br><span class="line"> Metaspace       used 3420K, capacity 4500K, committed 4864K, reserved 1056768K</span><br><span class="line">  class space    used 371K, capacity 388K, committed 512K, reserved 1048576K</span><br><span class="line">Heap after GC invocations=1 (full 1):</span><br><span class="line"> garbage-first heap   total 1024000K, used 21755K [0x0000000781800000, 0x0000000781901f40, 0x00000007c0000000)</span><br><span class="line">  region size 1024K, 0 young (0K), 0 survivors (0K)</span><br><span class="line"> Metaspace       used 3420K, capacity 4500K, committed 4864K, reserved 1056768K</span><br><span class="line">  class space    used 371K, capacity 388K, committed 512K, reserved 1048576K</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>&#123;Heap before GC invocations=0 (full 0):
+ garbage-first heap   total 1024000K, used 324609K [0x0000000781800000, 0x0000000781901f40, 0x00000007c0000000)
+  region size 1024K, 6 young (6144K), 0 survivors (0K)
+ Metaspace       used 3420K, capacity 4500K, committed 4864K, reserved 1056768K
+  class space    used 371K, capacity 388K, committed 512K, reserved 1048576K
+Heap after GC invocations=1 (full 1):
+ garbage-first heap   total 1024000K, used 21755K [0x0000000781800000, 0x0000000781901f40, 0x00000007c0000000)
+  region size 1024K, 0 young (0K), 0 survivors (0K)
+ Metaspace       used 3420K, capacity 4500K, committed 4864K, reserved 1056768K
+  class space    used 371K, capacity 388K, committed 512K, reserved 1048576K
+&#125;
+</code></pre>
 <h4 id="4-打印stw时间"><a class="markdownIt-Anchor" href="#4-打印stw时间">#</a> 4、打印 STW 时间</h4>
 <p>暂定时间时 GC 最重要的指标，肯定不能少</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-XX:+PrintGCApplicationStoppedTime</span><br></pre></td></tr></table></figure>
+<pre><code>-XX:+PrintGCApplicationStoppedTime
+</code></pre>
 <p>输出内容示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Total time for which application threads were stopped: 0.0254260 seconds, Stopping threads took: 0.0000218 seconds</span><br></pre></td></tr></table></figure>
+<pre><code>Total time for which application threads were stopped: 0.0254260 seconds, Stopping threads took: 0.0000218 seconds
+</code></pre>
 <h4 id="5-打印safepoint信息"><a class="markdownIt-Anchor" href="#5-打印safepoint信息">#</a> 5、打印 safepoint 信息</h4>
 <p>进入 STW 阶段之后，需要找到一个合适的 safepoint，这个指标一样很重要（非必选，出现 GC 问题时最好加上此参数调试）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-XX:+PrintSafepointStatistics -XX:PrintSafepointStatisticsCount=1</span><br></pre></td></tr></table></figure>
+<pre><code>-XX:+PrintSafepointStatistics -XX:PrintSafepointStatisticsCount=1
+</code></pre>
 <p>输出内容示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">        vmop                    [threads: total initially_running wait_to_block]    [time: spin block sync cleanup vmop] page_trap_count</span><br><span class="line">0.371: ParallelGCFailedAllocation       [      10          0              0    ]      [     0     0     0     0     7    ]  0   </span><br><span class="line">Execute full gc...dataList has been promoted to cms old space</span><br><span class="line">         vmop                    [threads: total initially_running wait_to_block]    [time: spin block sync cleanup vmop] page_trap_count</span><br><span class="line">0.379: ParallelGCSystemGC               [      10          0              0    ]      [     0     0     0     0    16    ]  0   </span><br><span class="line">         vmop                    [threads: total initially_running wait_to_block]    [time: spin block sync cleanup vmop] page_trap_count</span><br><span class="line">0.396: no vm operation                  [       9          1              1    ]      [     0     0     0     0   341    ]  0   </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>        vmop                    [threads: total initially_running wait_to_block]    [time: spin block sync cleanup vmop] page_trap_count
+0.371: ParallelGCFailedAllocation       [      10          0              0    ]      [     0     0     0     0     7    ]  0   
+Execute full gc...dataList has been promoted to cms old space
+         vmop                    [threads: total initially_running wait_to_block]    [time: spin block sync cleanup vmop] page_trap_count
+0.379: ParallelGCSystemGC               [      10          0              0    ]      [     0     0     0     0    16    ]  0   
+         vmop                    [threads: total initially_running wait_to_block]    [time: spin block sync cleanup vmop] page_trap_count
+0.396: no vm operation                  [       9          1              1    ]      [     0     0     0     0   341    ]  0   
+
+</code></pre>
 <h4 id="6-打印reference处理信息"><a class="markdownIt-Anchor" href="#6-打印reference处理信息">#</a> 6、打印 REference 处理信息</h4>
 <p>强引用 / 弱引用 / 软引用 / 虚引用 /finalize 方法万一有问题，不得打印出来看看？</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-XX:+PrintReferenceGC</span><br></pre></td></tr></table></figure>
+<pre><code>-XX:+PrintReferenceGC
+</code></pre>
 <p>输出内容示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">2021-02-19T12:41:30.462+0800: 5072726.605: [SoftReference, 0 refs, 0.0000521 secs]</span><br><span class="line">2021-02-19T12:41:30.462+0800: 5072726.605: [WeakReference, 0 refs, 0.0000069 secs]</span><br><span class="line">2021-02-19T12:41:30.462+0800: 5072726.605: [FinalReference, 0 refs, 0.0000056 secs]</span><br><span class="line">2021-02-19T12:41:30.462+0800: 5072726.605: [PhantomReference, 0 refs, 0 refs, 0.0000059 secs]</span><br><span class="line">2021-02-19T12:41:30.462+0800: 5072726.605: [JNI Weak Reference, 0.0000131 secs], 0.4635293 secs]</span><br></pre></td></tr></table></figure>
+<pre><code>2021-02-19T12:41:30.462+0800: 5072726.605: [SoftReference, 0 refs, 0.0000521 secs]
+2021-02-19T12:41:30.462+0800: 5072726.605: [WeakReference, 0 refs, 0.0000069 secs]
+2021-02-19T12:41:30.462+0800: 5072726.605: [FinalReference, 0 refs, 0.0000056 secs]
+2021-02-19T12:41:30.462+0800: 5072726.605: [PhantomReference, 0 refs, 0 refs, 0.0000059 secs]
+2021-02-19T12:41:30.462+0800: 5072726.605: [JNI Weak Reference, 0.0000131 secs], 0.4635293 secs]
+</code></pre>
 <h4 id="总结完整参数"><a class="markdownIt-Anchor" href="#总结完整参数">#</a> 总结：完整参数</h4>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># requireds</span></span><br><span class="line"><span class="attr">-XX</span>:<span class="string">+PrintGCDetails </span></span><br><span class="line"><span class="attr">-XX</span>:<span class="string">+PrintGCDateStamps </span></span><br><span class="line"><span class="attr">-XX</span>:<span class="string">+PrintTenuringDistribution </span></span><br><span class="line"><span class="attr">-XX</span>:<span class="string">+PrintHeapAtGC </span></span><br><span class="line"><span class="attr">-XX</span>:<span class="string">+PrintReferenceGC </span></span><br><span class="line"><span class="attr">-XX</span>:<span class="string">+PrintGCApplicationStoppedTime</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># optional</span></span><br><span class="line"><span class="attr">-XX</span>:<span class="string">+PrintSafepointStatistics </span></span><br><span class="line"><span class="attr">-XX</span>:<span class="string">PrintSafepointStatisticsCount=1</span></span><br></pre></td></tr></table></figure>
-<h3 id="二-gc日志输出方式"><a class="markdownIt-Anchor" href="#二-gc日志输出方式">#</a> 二、GC 日志输出方式</h3>
+<figure class="highlight properties"><figcaption data-lang=".properties"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># requireds</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token key attr-name">-XX</span><span class="token punctuation">:</span><span class="token value attr-value">+PrintGCDetails </span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token key attr-name">-XX</span><span class="token punctuation">:</span><span class="token value attr-value">+PrintGCDateStamps </span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token key attr-name">-XX</span><span class="token punctuation">:</span><span class="token value attr-value">+PrintTenuringDistribution </span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token key attr-name">-XX</span><span class="token punctuation">:</span><span class="token value attr-value">+PrintHeapAtGC </span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token key attr-name">-XX</span><span class="token punctuation">:</span><span class="token value attr-value">+PrintReferenceGC </span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token key attr-name">-XX</span><span class="token punctuation">:</span><span class="token value attr-value">+PrintGCApplicationStoppedTime</span></pre></td></tr><tr><td data-num="8"></td><td><pre></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token comment"># optional</span></pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token key attr-name">-XX</span><span class="token punctuation">:</span><span class="token value attr-value">+PrintSafepointStatistics </span></pre></td></tr><tr><td data-num="11"></td><td><pre><span class="token key attr-name">-XX</span><span class="token punctuation">:</span><span class="token value attr-value">PrintSafepointStatisticsCount=1</span></pre></td></tr></table></figure><h3 id="二-gc日志输出方式"><a class="markdownIt-Anchor" href="#二-gc日志输出方式">#</a> 二、GC 日志输出方式</h3>
 <blockquote>
 <p>上面知识定义了打印的内容，默认情况下，这些日志会输出到控制台（标准输出）。那如果你的程序日志也输出到控制台呢，这个日志内容就会很乱，分析起来很麻烦，如果你是追加的方式（比如 tomcat 的 catalina.out 就是追加），这个文件会越来越大，分析起来就要命了。</p>
 <p>所以需要一种分割日志的机制，这个机制嘛… JVM 自然提供了。</p>
 </blockquote>
 <h4 id="1-jvm的日志分割"><a class="markdownIt-Anchor" href="#1-jvm的日志分割">#</a> 1、JVM 的日志分割</h4>
 <p>JVM 提供了几个用于分割 GC 日志的参数：</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># GC日志输出的文件路径</span></span><br><span class="line"><span class="attr">-Xloggc</span>:<span class="string">/path/to/gc.log</span></span><br><span class="line"><span class="comment"># 开启日志文件分割</span></span><br><span class="line"><span class="attr">-XX</span>:<span class="string">+UseGCLogFileRotation </span></span><br><span class="line"><span class="comment"># 最多分割几个文件，超过之后从头开始写</span></span><br><span class="line"><span class="attr">-XX</span>:<span class="string">NumberOfGCLogFiles=5</span></span><br><span class="line"><span class="comment"># 每个文件上限大小，超过就触发分割</span></span><br><span class="line"><span class="attr">-XX</span>:<span class="string">GCLogFileSize=20M</span></span><br></pre></td></tr></table></figure>
-<p>按照这个参数，每个 GC 日志只要超过 20M 就会进行分割，最多分割 5 个文件，文件名依次是 gc.log.0  gc.log.1  gc.log.2  gc.log.3  gc.log.4</p>
+<figure class="highlight properties"><figcaption data-lang=".properties"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># GC 日志输出的文件路径</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token key attr-name">-Xloggc</span><span class="token punctuation">:</span><span class="token value attr-value">/path/to/gc.log</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token comment"># 开启日志文件分割</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token key attr-name">-XX</span><span class="token punctuation">:</span><span class="token value attr-value">+UseGCLogFileRotation </span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token comment"># 最多分割几个文件，超过之后从头开始写</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token key attr-name">-XX</span><span class="token punctuation">:</span><span class="token value attr-value">NumberOfGCLogFiles=5</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token comment"># 每个文件上限大小，超过就触发分割</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token key attr-name">-XX</span><span class="token punctuation">:</span><span class="token value attr-value">GCLogFileSize=20M</span></pre></td></tr></table></figure><p>按照这个参数，每个 GC 日志只要超过 20M 就会进行分割，最多分割 5 个文件，文件名依次是 gc.log.0  gc.log.1  gc.log.2  gc.log.3  gc.log.4</p>
 <p>看似很美好，几行配置就可以搞定了输出文件的问题，但是这种方式有一些问题：</p>
 <ul>
 <li>-Xloggc 方式指定的日志文件，是覆盖写的方式，每次启动都会覆盖，历史日志会丢失。</li>
@@ -201,13 +244,11 @@ Arvin.Yang = </title>
 <p>这个覆盖的问题就有点恶心了，每次启动覆盖之前的历史日志… 这谁能忍？</p>
 <h4 id="2-使用时间戳命名文件"><a class="markdownIt-Anchor" href="#2-使用时间戳命名文件">#</a> 2、使用时间戳命名文件</h4>
 <p>于是又另一种解决方案，不使用 JVM 提供的日志分隔功能，而是每次启动用时间戳命名日志文件，这样可以每次启动都使用不同的文件，就不会出现覆盖的问题了。</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用-%t作为日志文件名</span></span><br><span class="line"><span class="attr">-XX</span>:<span class="string">+PrintGCDetails -XX:+PrintGCDateStamps -Xloggc:/path/to/gc-%t.log</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># 生成的文件名是这种：gc-2021-03-29_20-41-47.log</span></span><br></pre></td></tr></table></figure>
-<p>可是这样就完美吗？</p>
+<figure class="highlight properties"><figcaption data-lang=".properties"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 使用 -% t 作为日志文件名</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token key attr-name">-XX</span><span class="token punctuation">:</span><span class="token value attr-value">+PrintGCDetails -XX:+PrintGCDateStamps -Xloggc:/path/to/gc-%t.log</span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token comment"># 生成的文件名是这种：gc-2021-03-29_20-41-47.log</span></pre></td></tr></table></figure><p>可是这样就完美吗？</p>
 <p>虽然没有覆盖的问题，但是由于没有日志分隔的功能，每次启动后另有一个 GC 日志文件，单个日志文件可能会非常巨大，过大的日志文件分析起来很麻烦的，必须的分隔。</p>
 <h4 id="3-二者结合"><a class="markdownIt-Anchor" href="#3-二者结合">#</a> 3、二者结合</h4>
 <p>这里只需要稍微调整一下策略，将 JVM 分隔和时间戳命名两种方案结合，就可以得到最优的方式了。</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># GC日志输出的文件路径</span></span><br><span class="line"><span class="attr">-Xloggc</span>:<span class="string">/path/to/gc-%t.log</span></span><br><span class="line"><span class="comment"># 开启日志文件分割</span></span><br><span class="line"><span class="attr">-XX</span>:<span class="string">+UseGCLogFileRotation </span></span><br><span class="line"><span class="comment"># 最多分割几个文件，超过之后从头开始写</span></span><br><span class="line"><span class="attr">-XX</span>:<span class="string">NumberOfGCLogFiles=14</span></span><br><span class="line"><span class="comment"># 每个文件上限大小，超过就触发分割</span></span><br><span class="line"><span class="attr">-XX</span>:<span class="string">GCLogFileSize=100M</span></span><br></pre></td></tr></table></figure>
-<p>配置时间戳作为 GC 日志文件名的同时，叶霈智 JVM 的 GC 日志分割策略，这样一来，既保证了 GC 文件不会被覆盖，又保证了单个 GC 文件的大小不会过大。完美。</p>
+<figure class="highlight properties"><figcaption data-lang=".properties"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># GC 日志输出的文件路径</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token key attr-name">-Xloggc</span><span class="token punctuation">:</span><span class="token value attr-value">/path/to/gc-%t.log</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token comment"># 开启日志文件分割</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token key attr-name">-XX</span><span class="token punctuation">:</span><span class="token value attr-value">+UseGCLogFileRotation </span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token comment"># 最多分割几个文件，超过之后从头开始写</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token key attr-name">-XX</span><span class="token punctuation">:</span><span class="token value attr-value">NumberOfGCLogFiles=14</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token comment"># 每个文件上限大小，超过就触发分割</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token key attr-name">-XX</span><span class="token punctuation">:</span><span class="token value attr-value">GCLogFileSize=100M</span></pre></td></tr></table></figure><p>配置时间戳作为 GC 日志文件名的同时，叶霈智 JVM 的 GC 日志分割策略，这样一来，既保证了 GC 文件不会被覆盖，又保证了单个 GC 文件的大小不会过大。完美。</p>
 <p>最终得到的日志文件名会像这个样子：</p>
 <ul>
 <li>gc-2021-03-29_20-41-47.log.0</li>
@@ -217,8 +258,7 @@ Arvin.Yang = </title>
 <li>…</li>
 </ul>
 <h3 id="三-最佳实战完整配置"><a class="markdownIt-Anchor" href="#三-最佳实战完整配置">#</a> 三、最佳实战，完整配置</h3>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 必备</span></span><br><span class="line"><span class="attr">-XX</span>:<span class="string">+PrintGCDetails </span></span><br><span class="line"><span class="attr">-XX</span>:<span class="string">+PrintGCDateStamps </span></span><br><span class="line"><span class="attr">-XX</span>:<span class="string">+PrintTenuringDistribution </span></span><br><span class="line"><span class="attr">-XX</span>:<span class="string">+PrintHeapAtGC </span></span><br><span class="line"><span class="attr">-XX</span>:<span class="string">+PrintReferenceGC </span></span><br><span class="line"><span class="attr">-XX</span>:<span class="string">+PrintGCApplicationStoppedTime</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># 可选</span></span><br><span class="line"><span class="attr">-XX</span>:<span class="string">+PrintSafepointStatistics </span></span><br><span class="line"><span class="attr">-XX</span>:<span class="string">PrintSafepointStatisticsCount=1</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># GC日志输出的文件路径</span></span><br><span class="line"><span class="attr">-Xloggc</span>:<span class="string">/path/to/gc-%t.log</span></span><br><span class="line"><span class="comment"># 开启日志文件分割</span></span><br><span class="line"><span class="attr">-XX</span>:<span class="string">+UseGCLogFileRotation </span></span><br><span class="line"><span class="comment"># 最多分割几个文件，超过之后从头文件开始写</span></span><br><span class="line"><span class="attr">-XX</span>:<span class="string">NumberOfGCLogFiles=14</span></span><br><span class="line"><span class="comment"># 每个文件上限大小，超过就触发分割</span></span><br><span class="line"><span class="attr">-XX</span>:<span class="string">GCLogFileSize=100M</span></span><br></pre></td></tr></table></figure>
-
+<figure class="highlight properties"><figcaption data-lang=".properties"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 必备</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token key attr-name">-XX</span><span class="token punctuation">:</span><span class="token value attr-value">+PrintGCDetails </span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token key attr-name">-XX</span><span class="token punctuation">:</span><span class="token value attr-value">+PrintGCDateStamps </span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token key attr-name">-XX</span><span class="token punctuation">:</span><span class="token value attr-value">+PrintTenuringDistribution </span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token key attr-name">-XX</span><span class="token punctuation">:</span><span class="token value attr-value">+PrintHeapAtGC </span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token key attr-name">-XX</span><span class="token punctuation">:</span><span class="token value attr-value">+PrintReferenceGC </span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token key attr-name">-XX</span><span class="token punctuation">:</span><span class="token value attr-value">+PrintGCApplicationStoppedTime</span></pre></td></tr><tr><td data-num="8"></td><td><pre></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token comment"># 可选</span></pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token key attr-name">-XX</span><span class="token punctuation">:</span><span class="token value attr-value">+PrintSafepointStatistics </span></pre></td></tr><tr><td data-num="11"></td><td><pre><span class="token key attr-name">-XX</span><span class="token punctuation">:</span><span class="token value attr-value">PrintSafepointStatisticsCount=1</span></pre></td></tr><tr><td data-num="12"></td><td><pre></pre></td></tr><tr><td data-num="13"></td><td><pre><span class="token comment"># GC 日志输出的文件路径</span></pre></td></tr><tr><td data-num="14"></td><td><pre><span class="token key attr-name">-Xloggc</span><span class="token punctuation">:</span><span class="token value attr-value">/path/to/gc-%t.log</span></pre></td></tr><tr><td data-num="15"></td><td><pre><span class="token comment"># 开启日志文件分割</span></pre></td></tr><tr><td data-num="16"></td><td><pre><span class="token key attr-name">-XX</span><span class="token punctuation">:</span><span class="token value attr-value">+UseGCLogFileRotation </span></pre></td></tr><tr><td data-num="17"></td><td><pre><span class="token comment"># 最多分割几个文件，超过之后从头文件开始写</span></pre></td></tr><tr><td data-num="18"></td><td><pre><span class="token key attr-name">-XX</span><span class="token punctuation">:</span><span class="token value attr-value">NumberOfGCLogFiles=14</span></pre></td></tr><tr><td data-num="19"></td><td><pre><span class="token comment"># 每个文件上限大小，超过就触发分割</span></pre></td></tr><tr><td data-num="20"></td><td><pre><span class="token key attr-name">-XX</span><span class="token punctuation">:</span><span class="token value attr-value">GCLogFileSize=100M</span></pre></td></tr></table></figure>
   </div>
 
    <footer>
@@ -238,7 +278,7 @@ Arvin.Yang = </title>
 <div id="copyright">
 <ul>
   <li class="author">
-    <strong>本文作者： </strong>Arvin.Yang <i class="ic i-at"><em>@</em></i>
+    <strong>本文作者： </strong>Arvin Yang <i class="ic i-at"><em>@</em></i>
   </li>
   <li class="link">
     <strong>本文链接：</strong>
@@ -261,7 +301,7 @@ Arvin.Yang = </title>
     <div class="item left">
       
 
-  <a href="/2023/02/19/tomcat%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicis3attqj20zk0m8k7l.jpg" title="类加载器">
+  <a href="/2023/02/19/tomcat%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipeyhsblkj20zk0m81kx.jpg" title="类加载器">
   <span class="type">上一篇</span>
   <span class="category"><i class="ic i-flag"></i> </span>
   <h3>类加载器</h3>
@@ -291,9 +331,9 @@ Arvin.Yang = </title>
       </div>
       <div class="overview panel" data-title="站点概览">
         <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <img class="image" itemprop="image" alt="Arvin.Yang"
+  <img class="image" itemprop="image" alt="Arvin Yang"
       data-src="/images/avatar.jpg">
-  <p class="name" itemprop="name">Arvin.Yang</p>
+  <p class="name" itemprop="name">Arvin Yang</p>
   <div class="description" itemprop="description"></div>
 </div>
 
@@ -379,7 +419,7 @@ Arvin.Yang = </title>
     <span class="with-love">
       <i class="ic i-sakura rotate"></i>
     </span>
-    <span class="author" itemprop="copyrightHolder">Arvin.Yang @ Arvin.Yang</span>
+    <span class="author" itemprop="copyrightHolder">Arvin Yang @ Arvin.Yang</span>
   </div>
   <div class="powered-by">
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>

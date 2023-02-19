@@ -100,12 +100,12 @@ Arvin.Yang = </title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipeu7txpzj20zk0m81kx.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipew28b65j20zk0m8hdt.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giclxxcb6rj20zk0m8b29.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giclx6phq6j20zk0m8e36.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giclffsa1cj20zk0m811l.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giclwuom7cj20zk0m8dvn.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclwuom7cj20zk0m8dvn.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclffsa1cj20zk0m811l.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipew28b65j20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclil3m4ej20zk0m8tn8.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipexj2jgzj20zk0m8b09.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giciuja1j1j20zk0m8kjl.jpg"></li>
         </ul>
       </div>
     </header>
@@ -138,7 +138,7 @@ Arvin.Yang = </title>
 
   <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="image" content="/images/avatar.jpg">
-    <meta itemprop="name" content="Arvin.Yang">
+    <meta itemprop="name" content="Arvin Yang">
     <meta itemprop="description" content=", ">
   </span>
 
@@ -153,8 +153,7 @@ Arvin.Yang = </title>
 <h3 id="11-engine"><a class="markdownIt-Anchor" href="#11-engine">#</a> 1.1、engine</h3>
 <h3 id="11-host"><a class="markdownIt-Anchor" href="#11-host">#</a> 1.1、host</h3>
 <p>虚拟主机，一个 tomcat 中可以定义多个 host。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Host</span> <span class="attr">name</span>=<span class="string">&quot;localhost&quot;</span>  <span class="attr">appBase</span>=<span class="string">&quot;webapps&quot;</span> <span class="attr">unpackWARs</span>=<span class="string">&quot;true&quot;</span> <span class="attr">autoDeploy</span>=<span class="string">&quot;true&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">Host</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">	name： 域名</span></span><br><span class="line"><span class="comment">	tomcat中部署应用的时候，默认可以直接丢在webapps中，如果是war包，tomcat会根据unpackWARs、autoDeploy自动解压部署。并且域名为默认的localhost，应用的文根是应用的文件夹名称。</span></span><br><span class="line"><span class="comment">	我们也可以自己单独部署比如：</span></span><br><span class="line"><span class="comment">	&lt;Context path=&quot;demoContext&quot; docBase=&quot;文件目录URL&quot;&gt;&lt;/Context&gt;</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="11-context"><a class="markdownIt-Anchor" href="#11-context">#</a> 1.1、context</h3>
+<figure class="highlight xml"><figcaption data-lang="XML"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Host</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>localhost<span class="token punctuation">"</span></span>  <span class="token attr-name">appBase</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>webapps<span class="token punctuation">"</span></span> <span class="token attr-name">unpackWARs</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span> <span class="token attr-name">autoDeploy</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Host</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token comment">&lt;!--</pre></td></tr><tr><td data-num="3"></td><td><pre>	name： 域名</pre></td></tr><tr><td data-num="4"></td><td><pre>	tomcat 中部署应用的时候，默认可以直接丢在 webapps 中，如果是 war 包，tomcat 会根据 unpackWARs、autoDeploy 自动解压部署。并且域名为默认的 localhost，应用的文根是应用的文件夹名称。</pre></td></tr><tr><td data-num="5"></td><td><pre>	我们也可以自己单独部署比如：</pre></td></tr><tr><td data-num="6"></td><td><pre>	&lt;Context path="demoContext" docBase="文件目录 URL">&lt;/Context></pre></td></tr><tr><td data-num="7"></td><td><pre>--></span></pre></td></tr></table></figure><h3 id="11-context"><a class="markdownIt-Anchor" href="#11-context">#</a> 1.1、context</h3>
 <p>一个 context 就代表着 tomcat 中部署的一个应用。</p>
 <h3 id="11-wrapper"><a class="markdownIt-Anchor" href="#11-wrapper">#</a> 1.1、wrapper</h3>
 <blockquote>
@@ -163,8 +162,7 @@ Arvin.Yang = </title>
 <p>这样子单例、多例，混杂在一起，这样子会很混乱，所以才有了 wrapper。wrapper 就是为了给 servlet 分组，一种 servlet 对应一个 wrapper。</p>
 <p>这样子 context 里面存储的是 servlet 列表，其实是 wrapper 列表。</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> Stack&lt;Servlet&gt; instancePool = <span class="literal">null</span>; <span class="comment">// STM</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">volatile</span> <span class="type">Servlet</span> <span class="variable">instance</span> <span class="operator">=</span> <span class="literal">null</span>;   <span class="comment">// single</span></span><br></pre></td></tr></table></figure>
-<h2 id="2-类加载器"><a class="markdownIt-Anchor" href="#2-类加载器">#</a> 2、类加载器</h2>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">protected</span> <span class="token class-name">Stack</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Servlet</span><span class="token punctuation">></span></span> instancePool <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span> <span class="token comment">// STM</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">protected</span> <span class="token keyword">volatile</span> <span class="token class-name">Servlet</span> instance <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>   <span class="token comment">// single</span></pre></td></tr></table></figure><h2 id="2-类加载器"><a class="markdownIt-Anchor" href="#2-类加载器">#</a> 2、类加载器</h2>
 
   </div>
 
@@ -185,7 +183,7 @@ Arvin.Yang = </title>
 <div id="copyright">
 <ul>
   <li class="author">
-    <strong>本文作者： </strong>Arvin.Yang <i class="ic i-at"><em>@</em></i>
+    <strong>本文作者： </strong>Arvin Yang <i class="ic i-at"><em>@</em></i>
   </li>
   <li class="link">
     <strong>本文链接：</strong>
@@ -208,7 +206,7 @@ Arvin.Yang = </title>
     <div class="item left">
       
 
-  <a href="/2023/02/19/hello-world/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicit31ffoj20zk0m8naf.jpg" title="Hello World">
+  <a href="/2023/02/19/hello-world/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giciukx8a7j20zk0m8aio.jpg" title="Hello World">
   <span class="type">上一篇</span>
   <span class="category"><i class="ic i-flag"></i> </span>
   <h3>Hello World</h3>
@@ -218,7 +216,7 @@ Arvin.Yang = </title>
     <div class="item right">
       
 
-  <a href="/2023/02/19/Future%E6%8E%A5%E5%8F%A3/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipeuv80yoj20zk0m8kjl.jpg" title="异步任务接口">
+  <a href="/2023/02/19/Future%E6%8E%A5%E5%8F%A3/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicli3sbvtj20zk0m8x6p.jpg" title="异步任务接口">
   <span class="type">下一篇</span>
   <span class="category"><i class="ic i-flag"></i> </span>
   <h3>异步任务接口</h3>
@@ -246,9 +244,9 @@ Arvin.Yang = </title>
       </div>
       <div class="overview panel" data-title="站点概览">
         <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <img class="image" itemprop="image" alt="Arvin.Yang"
+  <img class="image" itemprop="image" alt="Arvin Yang"
       data-src="/images/avatar.jpg">
-  <p class="name" itemprop="name">Arvin.Yang</p>
+  <p class="name" itemprop="name">Arvin Yang</p>
   <div class="description" itemprop="description"></div>
 </div>
 
@@ -336,7 +334,7 @@ Arvin.Yang = </title>
     <span class="with-love">
       <i class="ic i-sakura rotate"></i>
     </span>
-    <span class="author" itemprop="copyrightHolder">Arvin.Yang @ Arvin.Yang</span>
+    <span class="author" itemprop="copyrightHolder">Arvin Yang @ Arvin.Yang</span>
   </div>
   <div class="powered-by">
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
