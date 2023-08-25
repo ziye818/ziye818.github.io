@@ -1,0 +1,666 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="" href="http://example.com/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="" href="http://example.com/atom.xml" />
+<link rel="alternate" type="application/json" title="" href="http://example.com/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+
+<link rel="canonical" href="http://example.com/2023/08/26/Java8%E6%96%B0%E7%89%B9%E6%80%A7/">
+
+
+
+  <title>
+Java8新特性 |
+Arvin.Yang = </title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">Java8新特性
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2023-08-26 07:04:43">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2023-08-26T07:04:43+08:00">2023-08-26</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Arvin.Yang</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="http://s3.bmp.ovh/imgs/2023/01/02/b4c80ea17972db20.jpg"></li>
+          <li class="item" data-background-image="https://s3.bmp.ovh/imgs/2023/02/18/ec2f105b83dc1419.jpg"></li>
+          <li class="item" data-background-image="http://s3.bmp.ovh/imgs/2023/01/02/b4c80ea17972db20.jpg"></li>
+          <li class="item" data-background-image="https://s3.bmp.ovh/imgs/2023/02/18/00fca14bc083473a.jpg"></li>
+          <li class="item" data-background-image="https://s3.bmp.ovh/imgs/2023/02/18/ec2f105b83dc1419.jpg"></li>
+          <li class="item" data-background-image="https://s3.bmp.ovh/imgs/2023/02/18/00fca14bc083473a.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/26/Java8%E6%96%B0%E7%89%B9%E6%80%A7/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="Arvin Yang">
+    <meta itemprop="description" content=", ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <p>大处着眼，小处着手。</p>
+<p>逆向思维，反证法。</p>
+<p>透过问题看本质。</p>
+<h1 id="1-lambda表达式"><a class="markdownIt-Anchor" href="#1-lambda表达式">#</a> 1、Lambda 表达式</h1>
+<p>Lambda 是一个匿名函数，我们可以把 Lambda 表达式理解为是一段可以传递的代码（将代码像数据一样进行传递）。使用它可以写出更简洁、更灵活的代码。作为一种更紧凑的代码风格，使 Java 的语言表达能力得到了提升。</p>
+<p><strong>Lambda 是一个对象。</strong></p>
+<ul>
+<li>
+<p>语法格式 1：无参、无返回值</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token class-name">Runnable</span> task <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"test"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
+<li>
+<p>语法格式 2：Lambda 表达式需要一个参数，但是没有返回值</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token class-name">Consumer</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> consumer <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">String</span> param<span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>param<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
+<li>
+<p>语法格式 3：数据类型可以省略，因为可由编译器推断得出，称为 &quot;类型推断&quot;</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token class-name">Consumer</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> consumer1 <span class="token operator">=</span> <span class="token punctuation">(</span>param<span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>param<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
+<li>
+<p>语法格式 4：Lambda 若只需要一个参数时，参数的小括号可以省略</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token class-name">Consumer</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> consumer2 <span class="token operator">=</span> param <span class="token operator">-></span> <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>param<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
+<li>
+<p>语法格式 5：Lambda 需要两个或以上的参数，多条执行语句，并且可以有返回值</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token class-name">BiFunction</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">,</span> <span class="token class-name">Integer</span><span class="token punctuation">,</span> <span class="token class-name">Integer</span><span class="token punctuation">></span></span> biFunction <span class="token operator">=</span> <span class="token punctuation">(</span>p1<span class="token punctuation">,</span> p2<span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>  <span class="token keyword">if</span> <span class="token punctuation">(</span>p2 <span class="token operator">></span> p1<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>      <span class="token keyword">return</span> p2 <span class="token operator">-</span> p1<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>  <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>      <span class="token keyword">return</span> p1 <span class="token operator">-</span> p2<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>  <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token punctuation">&#125;</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
+<li>
+<p>语法格式 6：当 Lambda 体只有<strong>一条</strong>语句时，return 与大括号若有，可以省略</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token class-name">Function</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">,</span> <span class="token class-name">Integer</span><span class="token punctuation">></span></span> function <span class="token operator">=</span> p1 <span class="token operator">-></span> p1 <span class="token operator">+</span> <span class="token number">10</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>小总结：</strong></p>
+<p>​	1、举例：（o1, o2）-&gt;  Integer.compare (o1, o2);</p>
+<p>​	2、格式：</p>
+<p>​			-&gt;:  lambda 操作符 或 箭头操作符</p>
+<p>​			-&gt; 左边：lambda 形参列表 （其实就是接口的抽象方法的形参列表）</p>
+<p>​			-&gt; 右边：lambda 体 （其实就是重写的抽象方法的方法体）</p>
+<p>​	3、Lambda 表达式的使用：分为上面 6 种情况介绍</p>
+<p>​			总结：</p>
+<p>​			-&gt; 左边：lambda 形参列表的参数类型可以省略（类型推断）；如果 lambda 形参列表只有一个参数，其一对 () 可以省略，</p>
+<p>​			-&gt; 右边：lambda 体应该使用一对 {} 包裹，如果 lambda 体只有一条执行语句（可以是 return 语句），可以省略这对 {} 以及 return 关键字。</p>
+<p>​	4、Lambda 表达式的本质：作为接口的实例。</p>
+<h1 id="2-函数式function接口"><a class="markdownIt-Anchor" href="#2-函数式function接口">#</a> 2、函数式（Function）接口</h1>
+<p>如果一个接口中，只申明了一个抽象方法，则此接口就称为函数式接口，例如 Runnable 接口、Comparator 接口。</p>
+<p>函数式接口上面可以标注注解：@FunctionalInterface，这样子可以检查它是否是一个函数式接口。同时 Javadoc 也包含一条声明，说明这是一个函数式接口。</p>
+<p>你可以通过 Lambda 表达式来创建该接口的对象。（若 Lambda 表达式抛出一个受检异常（即：非运行时异常），那么该异常需要在目标接口的抽象方法上进行申明）。</p>
+<p>在 java.util.function 包下定义了 Java8 的丰富函数式接口。</p>
+<p>自定义一个函数式接口：</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token annotation punctuation">@FunctionalInterface</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">MyFunction</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">,</span> <span class="token class-name">R</span><span class="token punctuation">></span></span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token class-name">R</span> <span class="token function">method1</span><span class="token punctuation">(</span><span class="token class-name">R</span> param<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p><strong>如何理解函数式接口：</strong></p>
+<ul>
+<li>Java 从诞生日起就一直倡导 “一起皆对象 “，在 Java 里面面向对象（OOP）编程是一切。但是随着 python、scala 等语言的兴起和新技术的挑战，Java 不得不做出调整以便支持更加广泛的技术要求，也即 Java 不但可以支持 OOP 还可以支持 OOF（面向函数编程）</li>
+<li>在函数式编程语言中，函数被当作一等公民对待。在将函数作为一等公民的编程语言中，Lambda 表达式的类型是函数，但是在 Java8 中，有所不同，在 Java8 中，Lambda 表达式是对象，而不是函数，他们必须依附于一类特别的对象类型 ------ 函数式接口。</li>
+<li>简单点说，在 Java8 中，Lambda 表达式就是一个函数式接口的实例，这就是 lambda 表达式和函数式接口的关系。也就是只要一个对象式函数式接口的实例，那么该对象就可以用 lambda 表达式拉表示。</li>
+<li>所以以前用匿名实现类表示的现在都可以用 lambda 表达式来写。</li>
+</ul>
+<p><strong>Java 内置四大核心函数式接口：</strong></p>
+<table>
+<thead>
+<tr>
+<th>函数式接口</th>
+<th>参数类型</th>
+<th>返回类型</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Consumer<T> 消费型接口</td>
+<td>T</td>
+<td>void</td>
+<td>对类型为 T 的对象应用操作，包含方法：void accept (T t);</td>
+</tr>
+<tr>
+<td>Supplier<T>    供给型接口</td>
+<td>无</td>
+<td>T</td>
+<td>返回类型为 T 的对象，包含方法：T get ()；</td>
+</tr>
+<tr>
+<td>Function&lt;T, R&gt; 函数型接口</td>
+<td>T</td>
+<td>R</td>
+<td>对类型为 T 的对象应用操作，并返回结果，结果是 R 类型的对象。包含方法：R apply (T t);</td>
+</tr>
+<tr>
+<td>Predicate<T> 断定型接口</td>
+<td>T</td>
+<td>boolean</td>
+<td>确定类型为 T 是否满足某约束，并返回 Boolean 值，包含方法：boolean test (T t);</td>
+</tr>
+</tbody>
+</table>
+<p>在 java.util.function 中还有很多其他函数式接口，但是这些接口都是上面四大核心接口的变种。</p>
+<p><strong>代码实例：</strong></p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token function">consumerDemo</span><span class="token punctuation">(</span><span class="token string">"consumer test"</span><span class="token punctuation">,</span> input <span class="token operator">-></span> <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"你给我数据是："</span> <span class="token operator">+</span> input<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>  	<span class="token function">supplierDemo</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token string">"返回的数据是 hello！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>  	<span class="token function">predicateDemo</span><span class="token punctuation">(</span><span class="token string">"test"</span><span class="token punctuation">,</span> input <span class="token operator">-></span> <span class="token string">"test"</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>input<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>  	<span class="token function">functionDemo</span><span class="token punctuation">(</span><span class="token string">"fun"</span><span class="token punctuation">,</span> input <span class="token operator">-></span> input <span class="token operator">+</span> <span class="token string">"----"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token comment">// Consumer</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">consumerDemo</span><span class="token punctuation">(</span><span class="token class-name">String</span> input<span class="token punctuation">,</span> <span class="token class-name">Consumer</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> consumer<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    consumer<span class="token punctuation">.</span><span class="token function">accept</span><span class="token punctuation">(</span>input<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="11"></td><td><pre><span class="token comment">// Supplier</span></pre></td></tr><tr><td data-num="12"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">supplierDemo</span><span class="token punctuation">(</span><span class="token class-name">Supplier</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> supplier<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>  	<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>supplier<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="15"></td><td><pre><span class="token comment">// Predicate</span></pre></td></tr><tr><td data-num="16"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">predicateDemo</span><span class="token punctuation">(</span><span class="token class-name">String</span> input<span class="token punctuation">,</span> <span class="token class-name">Predicate</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> predicate<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>  	<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>predicate<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>input<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="18"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="19"></td><td><pre><span class="token comment">// Function</span></pre></td></tr><tr><td data-num="20"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">functionDemo</span><span class="token punctuation">(</span><span class="token class-name">String</span> input<span class="token punctuation">,</span> <span class="token class-name">Function</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">></span></span> function<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="21"></td><td><pre>  	<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>function<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>input<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="22"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="23"></td><td><pre></pre></td></tr><tr><td data-num="24"></td><td><pre><span class="token comment">// 结果：</span></pre></td></tr><tr><td data-num="25"></td><td><pre><span class="token comment">// 你给我数据是：consumer test</span></pre></td></tr><tr><td data-num="26"></td><td><pre><span class="token comment">// 返回的数据是 hello！</span></pre></td></tr><tr><td data-num="27"></td><td><pre><span class="token comment">// true</span></pre></td></tr><tr><td data-num="28"></td><td><pre><span class="token comment">// fun----</span></pre></td></tr></table></figure><h1 id="3-函数引用与构造器引用"><a class="markdownIt-Anchor" href="#3-函数引用与构造器引用">#</a> 3、函数引用与构造器引用</h1>
+<p><strong>方法引用：</strong></p>
+<ul>
+<li>当要传递给 Lambda 体的操作，已经有实现的方法了，可以使用方法引用！</li>
+<li>方法引用可以看作是 Lambda 表达式深层次的表达，换句话说，方法引用就是 Lambda 表达式，也就是函数式接口的一个实例，通过方法的名字来指向一个方法，可以认为是 Lambda 表达式的一个语法糖。</li>
+<li>要求：<strong>实现接口的抽象方法的参数列表和返回值类型，必须与方法引用的方法的参数列表和返回值类型保持一致。</strong></li>
+<li>格式：使用操作符 ”::“ 将类（或对象）与方法名分隔开来。</li>
+<li>如下三种主要使用情况：
+<ul>
+<li>对象：：实例方法名</li>
+<li>类：：静态方法名</li>
+<li>类：：实例方法名</li>
+</ul>
+</li>
+</ul>
+<p><strong>实例代码：</strong></p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MethodReferenceDemo</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>	    <span class="token comment">// 对象：：实例方法</span></pre></td></tr><tr><td data-num="4"></td><td><pre>        <span class="token class-name">Consumer</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> consumer <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">.</span>out <span class="token operator">::</span> <span class="token function">println</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>        consumer<span class="token punctuation">.</span><span class="token function">accept</span><span class="token punctuation">(</span><span class="token string">"TEST"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>      </pre></td></tr><tr><td data-num="7"></td><td><pre>      	<span class="token comment">// 类：：静态方法</span></pre></td></tr><tr><td data-num="8"></td><td><pre>      	<span class="token class-name">Comparator</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">></span></span> comparator <span class="token operator">=</span> <span class="token class-name">Integer</span> <span class="token operator">::</span> <span class="token function">compare</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>comparator<span class="token punctuation">.</span><span class="token function">compare</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>      </pre></td></tr><tr><td data-num="11"></td><td><pre>      	<span class="token comment">// 类：：实例方法 （比较特殊，需要好好理解）</span></pre></td></tr><tr><td data-num="12"></td><td><pre>      	<span class="token comment">// int compareTo(String anotherString)</span></pre></td></tr><tr><td data-num="13"></td><td><pre>      	<span class="token comment">// int compare(T o1, T o2);</span></pre></td></tr><tr><td data-num="14"></td><td><pre>      	<span class="token comment">// 上面两个方法，形参列表不一样，但是 o1 和 xx.compareTo, o1 与 xx 是一个</span></pre></td></tr><tr><td data-num="15"></td><td><pre>      	<span class="token class-name">Comparator</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> comparator1 <span class="token operator">=</span> <span class="token class-name">String</span> <span class="token operator">::</span> <span class="token function">compareTo</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>comparator1<span class="token punctuation">.</span><span class="token function">compare</span><span class="token punctuation">(</span><span class="token string">"test"</span><span class="token punctuation">,</span> <span class="token string">"test"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>      	</pre></td></tr><tr><td data-num="18"></td><td><pre>      	<span class="token class-name">BiPredicate</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">></span></span> predicate <span class="token operator">=</span> <span class="token class-name">String</span> <span class="token operator">::</span> <span class="token function">equals</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="19"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>predicate<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token string">"test"</span><span class="token punctuation">,</span> <span class="token string">"test"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>      </pre></td></tr><tr><td data-num="21"></td><td><pre>      	<span class="token comment">// 重点理解</span></pre></td></tr><tr><td data-num="22"></td><td><pre>      	<span class="token class-name">Function</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Employee</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">></span></span> function <span class="token operator">=</span> <span class="token class-name">Employee</span><span class="token operator">::</span><span class="token function">getName</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="23"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>function<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Employee</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="24"></td><td><pre>      </pre></td></tr><tr><td data-num="25"></td><td><pre>      	<span class="token comment">// 构造器引用</span></pre></td></tr><tr><td data-num="26"></td><td><pre>      	<span class="token class-name">Supplier</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Employee</span><span class="token punctuation">></span></span> supplier <span class="token operator">=</span> <span class="token class-name">Employee</span> <span class="token operator">::</span> <span class="token keyword">new</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="27"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>supplier<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="28"></td><td><pre>      	<span class="token comment">// 默认会调用带参数的构造器。</span></pre></td></tr><tr><td data-num="29"></td><td><pre>      	<span class="token class-name">Function</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">,</span> <span class="token class-name">Employee</span><span class="token punctuation">></span></span> function1 <span class="token operator">=</span> <span class="token class-name">Employee</span> <span class="token operator">::</span> <span class="token keyword">new</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="30"></td><td><pre>      </pre></td></tr><tr><td data-num="31"></td><td><pre>      	<span class="token class-name">Function</span><span class="token operator">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">></span> function2 <span class="token operator">=</span> <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">::</span> <span class="token keyword">new</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="32"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="33"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h1 id="4-强大的stream-api"><a class="markdownIt-Anchor" href="#4-强大的stream-api">#</a> 4、强大的 Stream API</h1>
+<p>Stream 和 Collection 集合的区别：Collection 是一种静态的内存数据结构，而 Stream 是有关计算的。Collection 主要面向内存，存储在内存中的，后者主要面向 CPU，通过 CPU 实现计算。</p>
+<p>集合讲的是数据，Stream 讲的是计算。</p>
+<p>注意：</p>
+<ul>
+<li>Stream 自己不会存储元素</li>
+<li>Stream<strong> 不会改变源对象</strong>。相反：他们会返回一个持有结果的新 Stream。</li>
+<li>Stream 操作是延迟执行的。这意味着<strong>他们会等到需要结果的时候才执行</strong>。</li>
+</ul>
+<p><strong>Stream 的操作三个步骤：</strong></p>
+<ol>
+<li>** 创建 Stream：** 一个数据源（如：集合、数组），获得一个流。</li>
+<li>** 中间操作：** 一个中间操作链，对数据源的数据进行处理。</li>
+<li>** 终止操作（终端操作）：** 一旦执行终止操作，就执行中间操作链，并产生结果，之后，不会再被使用。</li>
+</ol>
+<h2 id="41-stream的创建操作"><a class="markdownIt-Anchor" href="#41-stream的创建操作">#</a> 4.1、Stream 的创建操作</h2>
+<p><strong>创建 Stream 方式一：通过集合</strong></p>
+<p>​	Java8 中的 Collection 接口被扩展，提供了两个获取流的方法：</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">default</span> <span class="token class-name">Stream</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">E</span><span class="token punctuation">></span></span> <span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 	<span class="token comment">// 返回一个顺序流</span></pre></td></tr><tr><td data-num="2"></td><td><pre>  <span class="token keyword">default</span> <span class="token class-name">Stream</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">E</span><span class="token punctuation">></span></span> <span class="token function">parallelStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>	<span class="token comment">// 返回一个并行流</span></pre></td></tr></table></figure><p><strong>创建 Stream 方式二：通过数组</strong></p>
+<p>​	Java8 中的 Arrays 的静态方法 steam () 可以获取数组流：</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> <span class="token class-name">Stream</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> <span class="token function">stream</span><span class="token punctuation">(</span><span class="token class-name">T</span><span class="token punctuation">[</span><span class="token punctuation">]</span> array<span class="token punctuation">)</span>  <span class="token comment">// 返回一个流</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token comment">// 重载形式，能够处理对应基本类型的数据。</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">IntStream</span> <span class="token function">stream</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> array<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">LongStream</span> <span class="token function">stream</span><span class="token punctuation">(</span><span class="token keyword">long</span><span class="token punctuation">[</span><span class="token punctuation">]</span> array<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">DoubleStream</span> <span class="token function">stream</span><span class="token punctuation">(</span><span class="token keyword">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span> array<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span></pre></td></tr></table></figure><p><strong>创建 Stream 方式三：通过 Stream 的 of ()</strong></p>
+<p>​	可以调用 Stream 类静态方法 of ()，通过显示值创建一个流。它可以接收任意多的参数（可变参数）</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">static</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> <span class="token class-name">Stream</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> <span class="token function">of</span><span class="token punctuation">(</span><span class="token class-name">T</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> values<span class="token punctuation">)</span>  <span class="token comment">// 返回一个流</span></pre></td></tr></table></figure><p><strong>创建 Stream 方式四：创建无限流</strong></p>
+<p>​	可以使用静态方法 Stream.iterate () 和 Stream.generate ()，创建无限流。</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">// 迭代</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">static</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> <span class="token class-name">Stream</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> <span class="token function">iterate</span><span class="token punctuation">(</span><span class="token keyword">final</span> <span class="token class-name">T</span> seed<span class="token punctuation">,</span> <span class="token keyword">final</span> <span class="token class-name">UnaryOperator</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> f<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token comment">// 生成</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">static</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> <span class="token class-name">Stream</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> <span class="token function">generate</span><span class="token punctuation">(</span><span class="token class-name">Supplier</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> s<span class="token punctuation">)</span></pre></td></tr></table></figure><p>eg：通过无限流造数据。</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token class-name">Stream</span><span class="token punctuation">.</span><span class="token function">iterate</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> t <span class="token operator">-></span> t <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">limit</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token operator">::</span><span class="token function">println</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>  	<span class="token class-name">Stream</span><span class="token punctuation">.</span><span class="token function">generate</span><span class="token punctuation">(</span><span class="token class-name">Math</span><span class="token operator">::</span><span class="token function">random</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">limit</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token operator">::</span><span class="token function">println</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h2 id="42-stream的中间操作"><a class="markdownIt-Anchor" href="#42-stream的中间操作">#</a> 4.2、Stream 的中间操作</h2>
+<p>多个中间操作可以连接起来形成一个流水线，除非流水线上触发终止操作，否则中间操作不会执行任何的处理！而在终止操作时一次性全部处理，称为 &quot;惰性求值&quot;。</p>
+<p><strong>筛选与切片</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>filter(Predicate  p)</td>
+<td>接收 lambda，从流中排除某些元素</td>
+</tr>
+<tr>
+<td>distinct()</td>
+<td>筛选，通过流所生成元素的 hashCode () 和 equal () 去除重复元素</td>
+</tr>
+<tr>
+<td>limit(long  maxSize)</td>
+<td>截断流，使其元素不超过给定数量</td>
+</tr>
+<tr>
+<td>skip(long  n)</td>
+<td>跳过元素，返回一个扔掉了前 n 个元素的流。若流中元素不足 n 个，则返回一个空流，与 limit (n) 互补。</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">></span></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">9000</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">8000</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">6000</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">5000</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>e <span class="token operator">-></span> e <span class="token operator">></span> <span class="token number">7000</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token operator">::</span><span class="token function">println</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token comment">// 结果:</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token comment">// 9000</span></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token comment">// 8000</span></pre></td></tr></table></figure><p><strong>映射：</strong></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>map(Function  f)</td>
+<td>接收一个函数作为参数，该函数会被应用每个元素上，并将其映射成一个新的元素</td>
+</tr>
+<tr>
+<td>mapToInt(ToIntFunction&lt;? super T&gt; mapper)</td>
+<td>接收一个函数作为参数，该函数会被应用到每个元素上，产生一个新的 DoubleStream</td>
+</tr>
+<tr>
+<td>mapToLong(ToLongFunction&lt;? super T&gt; mapper)</td>
+<td>接收一个函数作为参数，该函数会被应用到每个元素上，产生一个新的 IntStream</td>
+</tr>
+<tr>
+<td>mapToDouble(ToDoubleFunction&lt;? super T&gt; mapper)</td>
+<td>接收一个函数作为参数，该函数会被应用到每个元素上，产生一个新的 LongStream</td>
+</tr>
+<tr>
+<td>flatMap(Function&lt;? super T, ? extends Stream&lt;? extends R&gt;&gt; mapper)</td>
+<td>接收一个函数作为参数，将流中的每个值都换成另一个流，然后把所有流连接成一个流</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre>list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>item <span class="token operator">-></span> item <span class="token operator">+</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token operator">::</span><span class="token function">println</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">></span></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">flatMap</span><span class="token punctuation">(</span><span class="token class-name">StreamDemo</span><span class="token operator">::</span><span class="token function">getStream</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token operator">::</span><span class="token function">println</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre></pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">Stream</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">></span></span> <span class="token function">getStream</span><span class="token punctuation">(</span><span class="token keyword">int</span> input<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>  	<span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">></span></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>  	<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> input<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    	list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>  	<span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>  	<span class="token keyword">return</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="16"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p><strong>排序：</strong></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sorted()</td>
+<td>产生一个新流，其中按自然顺序排序</td>
+</tr>
+<tr>
+<td>sorted(Comparator  com)</td>
+<td>产生一个新流，其中按比较器顺序排序</td>
+</tr>
+</tbody>
+</table>
+<h2 id="43-stream的终止操作"><a class="markdownIt-Anchor" href="#43-stream的终止操作">#</a> 4.3、Stream 的终止操作</h2>
+<p>终止操作会从流的流水线生成结果，其结果可以时任何不是流的值，例如： List、Integer、甚至时 void。</p>
+<p>流进行了终止操作后，不能再次使用。（否则会报异常）</p>
+<p><strong>匹配和查找：</strong></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>anyMatch(Predicate&lt;? super T&gt; predicate)</td>
+<td>检查是否至少匹配一个元素</td>
+</tr>
+<tr>
+<td>allMatch(Predicate&lt;? super T&gt; predicate)</td>
+<td>检查是否匹配所有元素</td>
+</tr>
+<tr>
+<td>noneMatch(Predicate&lt;? super T&gt; predicate)</td>
+<td>检查是否没有匹配所有元素</td>
+</tr>
+<tr>
+<td>findFirst()</td>
+<td>返回第一个元素</td>
+</tr>
+<tr>
+<td>findAny()</td>
+<td>返回当前流中的任意元素</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td>方法</td>
+<td>描述</td>
+</tr>
+<tr>
+<td>-------------------------------------</td>
+<td>----------</td>
+</tr>
+<tr>
+<td>count();</td>
+<td>返回流中元素的总个数</td>
+</tr>
+<tr>
+<td>max(Comparator&lt;? super T&gt; comparator)</td>
+<td>返回流中最大值</td>
+</tr>
+<tr>
+<td>min(Comparator&lt;? super T&gt; comparator)</td>
+<td>返回流中最小值</td>
+</tr>
+<tr>
+<td>forEach(Consumer&lt;? super T&gt; action)</td>
+<td>内部迭代</td>
+</tr>
+</tbody>
+</table>
+<p><strong>规约：</strong></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>reduce(T identity, BinaryOperator<T> accumulator)</td>
+<td>可以将流中元素反复结合起来，得到一个值。返回 T</td>
+</tr>
+<tr>
+<td>reduce(BinaryOperator<T> accumulator)</td>
+<td>可以将流中元素反复结合起来，得到一个值，返回 Optional<T></td>
+</tr>
+</tbody>
+</table>
+<p>备注：map 和 reduce 的连通常称为 map-reduce 模式</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">></span></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token class-name">Integer</span><span class="token operator">::</span><span class="token function">sum</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token comment">// 11</span></pre></td></tr></table></figure><p><strong>收集：</strong></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>collect(Collector&lt;? super T, A, R&gt; collector)</td>
+<td>将流转换为其他形式，接收一个 Collector 接口的实现，用于给 Stream 中的元素做汇总的方法。</td>
+</tr>
+</tbody>
+</table>
+<p>Collector 接口中方法的实现决定了如何对流执行收集的操作（如收集到 LIst、Set、Map）。</p>
+<p>另外，Collectors 实用类提供了很多静态方法，可以方便的创建常见的收集器实例，</p>
+<h1 id="5-optional"><a class="markdownIt-Anchor" href="#5-optional">#</a> 5、Optional</h1>
+<p>主要处理空指针</p>
+
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2023-08-26 07:08:50" itemprop="dateModified" datetime="2023-08-26T07:08:50+08:00">2023-08-26</time>
+  </span>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>Arvin Yang <i class="ic i-at"><em>@</em></i>
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2023/08/26/Java8%E6%96%B0%E7%89%B9%E6%80%A7/" title="Java8新特性">http://example.com/2023/08/26/Java8新特性/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2023/02/26/%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%B8%AD%E6%96%AD%E6%9C%BA%E5%88%B6/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;s3.bmp.ovh&#x2F;imgs&#x2F;2023&#x2F;02&#x2F;18&#x2F;00fca14bc083473a.jpg" title="Java线程中断机制与LockSupport">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>Java线程中断机制与LockSupport</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text"> 1、Lambda 表达式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E5%87%BD%E6%95%B0%E5%BC%8Ffunction%E6%8E%A5%E5%8F%A3"><span class="toc-number">2.</span> <span class="toc-text"> 2、函数式（Function）接口</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E5%87%BD%E6%95%B0%E5%BC%95%E7%94%A8%E4%B8%8E%E6%9E%84%E9%80%A0%E5%99%A8%E5%BC%95%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text"> 3、函数引用与构造器引用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E5%BC%BA%E5%A4%A7%E7%9A%84stream-api"><span class="toc-number">4.</span> <span class="toc-text"> 4、强大的 Stream API</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#41-stream%E7%9A%84%E5%88%9B%E5%BB%BA%E6%93%8D%E4%BD%9C"><span class="toc-number">4.1.</span> <span class="toc-text"> 4.1、Stream 的创建操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#42-stream%E7%9A%84%E4%B8%AD%E9%97%B4%E6%93%8D%E4%BD%9C"><span class="toc-number">4.2.</span> <span class="toc-text"> 4.2、Stream 的中间操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#43-stream%E7%9A%84%E7%BB%88%E6%AD%A2%E6%93%8D%E4%BD%9C"><span class="toc-number">4.3.</span> <span class="toc-text"> 4.3、Stream 的终止操作</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-optional"><span class="toc-number">5.</span> <span class="toc-text"> 5、Optional</span></a></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="Arvin Yang"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">Arvin Yang</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">7</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Arvin Yang @ Arvin.Yang</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2023/08/26/Java8新特性/',
+    favicon: {
+      show: "（●´3｀●）やれやれだぜ",
+      hide: "(´Д｀)大変だ！"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>
